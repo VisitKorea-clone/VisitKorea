@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>홈</title>
+    <title>Document</title>
     <link rel="stylesheet" href="styles/home.css">
 </head>
 
@@ -16,12 +16,14 @@
             </div>
         </div>
         <div class="slide_page" id="slide_page">
-            <progress id="pageNum" value="1" min="1" max="6"></progress>
+            <div id="progressBarContainer">
+                <div id="progressBar"></div>
+            </div>
             <div class="slide_button">
                 <button class="prev">
                     <div class="arrow arrow-left"></div>
                 </button>
-                <button class="play">
+                <button class="play" id="playButton">
                     <img src="assets/images/btn_slide_play02.png" class="play-icon" alt="재생">
                 </button>
                 <button class="next">
