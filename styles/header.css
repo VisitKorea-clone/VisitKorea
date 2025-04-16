@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  position: relative;
+}
+
+header .mainLogo {
+  scale: 51%;
+  margin-left: -8rem;
+  margin-right: -5rem;
+}
+
+.menu {
+  display: flex;
+  gap: 3rem;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  height: 100%;
+  font-size: 24px;
+  text-align: left;
+  position: relative;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: -11px;
+  width: 6.5px;
+  height: 6.5px;
+  background-color: #000000;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.menu a:hover::after,
+.menu a.active::after {
+  opacity: 1;
+}
+
+.menu a:hover {
+  font-weight: 500;
+}
+
+.icon-area {
+  display: flex;
+  gap: 12px;
+}
+
+.circle {
+  border: 2px solid #2d2d2d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+  width: 2rem;
+  height: 2.2rem;
+}
+
+.dropdown {
+  display: none;
+  width: 100%;
+  height: 270px;
+  background-color: #e0e4e8;
+  padding: 20px;
+  position: absolute;
+  top: 120px;
+  left: 0;
+  z-index: 10;
+}
+
+.menu-list {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  gap: 3rem;
+  color: #5c5c5c;
+  padding-left: 17rem;
+}
+
+header:hover + .dropdown,
+.dropdown:hover {
+  display: block;
+}
+
+.travel-course .travel-info .travel-event {
+  display: flex;
+  flex-direction: column;
+  /* gap: 2rem; */
+}
+
+.travel-course > div,
+.travel-info > div,
+.travel-event > div {
+  margin-bottom: 10px;
+}
+
+.dropdown .menu-list .travel-course {
+  margin-left: 60px;
+}

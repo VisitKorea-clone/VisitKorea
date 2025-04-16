@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Header</title>
+    <link type="text/css" rel="stylesheet" href="./styles/header.css" />
   </head>
   <body>
-    <header>
+    <header class="header">
       <div class="mainLogo">
         <a href="/home.html">
           <svg
@@ -37,8 +38,65 @@
           </svg>
         </a>
       </div>
-      <div class="menu">ss</div>
-      <div class="form">ss</div>
+      <div class="menu">
+        <a class="active" href="#">홈</a>
+        <a href="#">테마</a>
+        <a href="#">지역</a>
+        <a href="#">여행코스</a>
+        <a href="#">여행정보</a>
+        <a href="#">여행혜택</a>
+      </div>
+
+      <div class="icon-area">
+        <div class="circle">
+          <img
+            width="30"
+            height="30"
+            src="https://img.icons8.com/fluency-systems-filled/48/search.png"
+            alt="search"
+          />
+        </div>
+        <div class="circle">
+          <img
+            width="32"
+            height="32"
+            src="https://img.icons8.com/windows/32/map.png"
+            alt="map"
+          />
+        </div>
+        <div class="circle">
+          <img
+            width="32"
+            height="32"
+            src="https://img.icons8.com/windows/32/gender-neutral-user.png"
+            alt="gender-neutral-user"
+          />
+        </div>
+        <div class="circle globe">
+          <img
+            width="36"
+            height="36"
+            src="https://img.icons8.com/ios/50/globe--v1.png"
+            alt="globe--v1"
+          />
+        </div>
+      </div>
     </header>
+    <div class="dropdown">
+      <div class="menu-list">
+        <div class="travel-course">
+          <div>추천코스</div>
+          <div>AI콕콕 플래너</div>
+        </div>
+        <div class="travel-info">
+          <div>여행지</div>
+          <div>여행/공연</div>
+        </div>
+        <div class="travel-event">
+          <div>이벤트</div>
+          <div>가볼래-터</div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
