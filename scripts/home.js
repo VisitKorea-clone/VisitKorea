@@ -105,6 +105,9 @@ function renderSlide(index) {
     </div>
   `;
 
+  const pageNumText = document.getElementById("pageNumText");
+  pageNumText.textContent = `${String(index + 1)}/${String(slideData.length)}`;
+
   startProgressTimer();
 }
 
@@ -121,6 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".next").addEventListener("click", () => {
     if (currentIndex < slideData.length - 1) {
       currentIndex++;
+      renderSlide(currentIndex);
+    } else if (currentIndex == slideData.length -1) {
+      currentIndex = 0;
       renderSlide(currentIndex);
     }
   });

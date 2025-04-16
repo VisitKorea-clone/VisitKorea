@@ -81,7 +81,8 @@ a:active {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 15px;
+    filter: drop-shadow(2px 3px 1px #E3E3E3);
 }
 
 .slide_page {
@@ -103,6 +104,12 @@ button {
     cursor: pointer;
 }
 
+.play-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
 .arrow {
     width: 17px;
     height: 16px;
@@ -113,10 +120,12 @@ button {
 
 .arrow-left {
     background-position: 0 0;
+    margin-right: 10px;
 }
 
 .arrow-right {
     background-position: 0 -16px;
+    margin-left: 10px;
 }
 
 #progressBarContainer {
