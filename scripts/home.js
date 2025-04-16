@@ -44,18 +44,54 @@ const slideData = [
 ];
 
 let currentIndex = 0;
+let progressTimer = null;
+
 const container = document.getElementById("slide_container");
 const slideContainer = document.getElementById("slide_page");
 const mainContent = document.querySelector(".main_content");
-const progressBar = document.getElementById("pageNum");
+const progressBar = document.getElementById("progressBar"); // 여기 수정!
+
+function lerpColor(start, end, t) {
+  const s = parseInt(start.substring(1), 16);
+  const e = parseInt(end.substring(1), 16);
+  const sr = (s >> 16) & 0xff, sg = (s >> 8) & 0xff, sb = s & 0xff;
+  const er = (e >> 16) & 0xff, eg = (e >> 8) & 0xff, eb = e & 0xff;
+  const r = Math.round(sr + (er - sr) * t);
+  const g = Math.round(sg + (eg - sg) * t);
+  const b = Math.round(sb + (eb - sb) * t);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+function startProgressTimer() {
+  const totalTime = 6000;
+  const interval = 100;
+  const steps = totalTime / interval;
+  let currentStep = 0;
+
+  // 초기화
+  progressBar.style.width = "0%";
+  progressBar.style.backgroundColor = "#B2B2B2";
+
+  if (progressTimer) clearInterval(progressTimer);
+
+  progressTimer = setInterval(() => {
+    currentStep++;
+    const progress = currentStep / steps;
+    progressBar.style.width = `${progress * 100}%`;
+    progressBar.style.backgroundColor = lerpColor("#B2B2B2", "#000000", progress);
+
+    if (currentStep >= steps) {
+      clearInterval(progressTimer);
+      currentIndex = (currentIndex + 1) % slideData.length;
+      renderSlide(currentIndex);
+    }
+  }, interval);
+}
 
 function renderSlide(index) {
   const data = slideData[index];
-
-  // 전체 배경색 설정
   mainContent.style.backgroundColor = data.bgColor;
 
-  // 내용 렌더링
   container.innerHTML = `
     <ul class="slide_content">
       <li class="title">${data.title}</li>
@@ -69,22 +105,45 @@ function renderSlide(index) {
     </div>
   `;
 
-  progressBar.value = index + 1;
-  progressBar.max = slideData.length;
+  startProgressTimer();
 }
 
-document.querySelector(".prev").addEventListener("click", () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    renderSlide(currentIndex);
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  renderSlide(currentIndex);
+
+  document.querySelector(".prev").addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderSlide(currentIndex);
+    }
+  });
+
+  document.querySelector(".next").addEventListener("click", () => {
+    if (currentIndex < slideData.length - 1) {
+      currentIndex++;
+      renderSlide(currentIndex);
+    }
+  });
 });
 
-document.querySelector(".next").addEventListener("click", () => {
-  if (currentIndex < slideData.length - 1) {
-    currentIndex++;
-    renderSlide(currentIndex);
+const playButton = document.getElementById("playButton");
+let isPlaying = true;
+
+playButton.addEventListener("click", () => {
+  const playIcon = playButton.querySelector("img");
+
+  if (isPlaying) {
+    playIcon.src = "assets/images/btn_slidem_m_stop02.png";
+    playIcon.alt = "정지";
+    clearInterval(progressTimer);
+  } else {
+    playIcon.src = "assets/images/btn_slide_play02.png";
+    playIcon.alt = "재생";
+    startProgressTimer();
   }
+
+  isPlaying = !isPlaying;
 });
 
+// 처음 시작
 renderSlide(currentIndex);
