@@ -45,49 +45,46 @@ const slideData = [
 
 let currentIndex = 0;
 const container = document.getElementById("slide_container");
+const slideContainer = document.getElementById("slide_page");
+const mainContent = document.querySelector(".main_content");
+const progressBar = document.getElementById("pageNum");
 
 function renderSlide(index) {
   const data = slideData[index];
 
+  // 전체 배경색 설정
+  mainContent.style.backgroundColor = data.bgColor;
+
+  // 내용 렌더링
   container.innerHTML = `
-    <div style="background-color:${data.bgColor}" class="content_wrapper_inner">
-      <ul class="slide_content">
-        <li class="title">${data.title}</li>
-        <li class="content">${data.content}</li>
-        <li class="description">
-          <a href="#" class="detail" target="_self">${data.detail}</a>
-        </li>
-      </ul>
-      <div class="slide_page">
-        <progress id="pageNum" value="${index + 1}" min="1" max="${slideData.length}"></progress>
-        <div class="slide_button">
-          <button class="prev"><div class="arrow arrow-left"></div></button>
-          <button class="play">
-            <img src="assets/images/btn_slide_play02.png" class="play-icon" alt="재생">
-          </button>
-          <button class="next"><div class="arrow arrow-right"></div></button>
-        </div>
-      </div>
-    </div>
+    <ul class="slide_content">
+      <li class="title">${data.title}</li>
+      <li class="content">${data.content}</li>
+      <li class="description">
+        <a href="#" class="detail" target="_self">${data.detail}</a>
+      </li>
+    </ul>
     <div class="slide_img">
       <img src="${data.image}" class="img" />
     </div>
   `;
 
-  // 이벤트 다시 등록
-  container.querySelector(".prev").addEventListener("click", () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      renderSlide(currentIndex);
-    }
-  });
-
-  container.querySelector(".next").addEventListener("click", () => {
-    if (currentIndex < slideData.length - 1) {
-      currentIndex++;
-      renderSlide(currentIndex);
-    }
-  });
+  progressBar.value = index + 1;
+  progressBar.max = slideData.length;
 }
+
+document.querySelector(".prev").addEventListener("click", () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderSlide(currentIndex);
+  }
+});
+
+document.querySelector(".next").addEventListener("click", () => {
+  if (currentIndex < slideData.length - 1) {
+    currentIndex++;
+    renderSlide(currentIndex);
+  }
+});
 
 renderSlide(currentIndex);
