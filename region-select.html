@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Region Slider</title>
+    <link rel="stylesheet" href="./styles/region-slider.css" />
+  </head>
+  <body>
+    <!-- 지역 선택 슬라이드 -->
+    <div class="slider-container">
+      <button class="nav-button prev-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <div class="slider-wrapper">
+        <div class="slider">
+          <div class="region-item dummy"></div>
+          <div class="region-item dummy"></div>
+          <div class="region-item dummy"></div>
+          <div class="region-item dummy"></div>
+          <div class="region-item active" data-region="nationwide">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1534274867514-d5b47ef89ed7?q=80&w=200&auto=format&fit=crop"
+                alt="Nationwide"
+              />
+            </div>
+            <p class="region-name">전국</p>
+          </div>
+          <div class="region-item" data-region="seoul">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1597218868981-1b68e15f0065?q=80&w=200&auto=format&fit=crop"
+                alt="Seoul"
+              />
+            </div>
+            <p class="region-name">서울</p>
+          </div>
+          <div class="region-item" data-region="incheon">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?q=80&w=200&auto=format&fit=crop"
+                alt="Incheon"
+              />
+            </div>
+            <p class="region-name">인천</p>
+          </div>
+          <div class="region-item" data-region="kyungki">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?q=80&w=200&auto=format&fit=crop"
+                alt="kyungki"
+              />
+            </div>
+            <p class="region-name">경기</p>
+          </div>
+          <div class="region-item" data-region="daejeon">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1548115184-bc6544d06a58?q=80&w=200&auto=format&fit=crop"
+                alt="Daejeon"
+              />
+            </div>
+            <p class="region-name">대전</p>
+          </div>
+          <div class="region-item" data-region="daegu">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=200&auto=format&fit=crop"
+                alt="Daegu"
+              />
+            </div>
+            <p class="region-name">대구</p>
+          </div>
+          <div class="region-item" data-region="gwangju">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?q=80&w=200&auto=format&fit=crop"
+                alt="Gwangju"
+              />
+            </div>
+            <p class="region-name">광주</p>
+          </div>
+          <div class="region-item" data-region="busan">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?q=80&w=200&auto=format&fit=crop"
+                alt="Busan"
+              />
+            </div>
+            <p class="region-name">부산</p>
+          </div>
+          <div class="region-item" data-region="kangwon">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1597218868981-1b68e15f0065?q=80&w=200&auto=format&fit=crop"
+                alt="Jeju"
+              />
+            </div>
+            <p class="region-name">강원</p>
+          </div>
+          <div class="region-item" data-region="ulsan">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?q=80&w=200&auto=format&fit=crop"
+                alt="Busan"
+              />
+            </div>
+            <p class="region-name">울산</p>
+          </div>
+          <div class="region-item" data-region="jeju">
+            <div class="circle">
+              <img
+                src="https://images.unsplash.com/photo-1597218868981-1b68e15f0065?q=80&w=200&auto=format&fit=crop"
+                alt="Jeju"
+              />
+            </div>
+            <p class="region-name">제주</p>
+          </div>
+        </div>
+      </div>
+      <button class="nav-button next-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+    <!-- 우리 지역 이야기 -->
+    <section class="area-story">
+      <h1>우리 지역 이야기</h1>
+      <div class="cards">
+        <div class="card card--featured">
+          <div class="card-labels">
+            <span class="badge badge--filled">광주</span>
+            <span class="badge">명소</span>
+          </div>
+          <h2 class="card-title">북구 8경</h2>
+          <a href="#" class="card-link">바로가기 &gt;</a>
+          <div class="card-content">
+            <blockquote>
+              <p>
+                광주 북구를 대표하는 명소 8곳 <br />아름다운 자연과 다양한
+                즐길거리
+              </p>
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="card card--lavender">
+          <div class="card-labels">
+            <span class="badge badge--filled">충남</span>
+            <span class="badge">명소</span>
+          </div>
+          <h2 class="card-title">[아산] <br />현충사</h2>
+          <a href="#" class="card-link">바로가기 &gt;</a>
+          <div class="card-content">
+            <blockquote>
+              <p>홍매화가 아름다운 곳! <br />충무공 이순신과 아산 현충사</p>
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="card card--sky">
+          <div class="card-labels">
+            <span class="badge badge--filled">세종</span>
+            <span class="badge">명소</span>
+          </div>
+          <h2 class="card-title">조치원 문화정원</h2>
+          <a href="#" class="card-link">바로가기 &gt;</a>
+          <div class="card-content">
+            <blockquote>
+              <p>정수장에서 문화공간으로! <br />역사와 예술이 함께하는 공간</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="./scripts/region-slider.js"></script>
+  </body>
+</html>
