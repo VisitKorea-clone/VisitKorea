@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('includesLoaded', () => {
   initCalendar();
   initSlider();
 });
@@ -185,7 +185,10 @@ function initSlider() {
       periodLabel.textContent = '기간';
       const periodValue = document.createElement('div');
       periodValue.classList.add('detail-value');
-      periodValue.textContent = fest.period;
+      const [startDate, endDate] = fest.period
+        .split('~')
+        .map((date) => date.trim());
+      periodValue.innerHTML = `${startDate} ~<br>${endDate}`;
       periodDiv.appendChild(periodLabel);
       periodDiv.appendChild(periodValue);
 
