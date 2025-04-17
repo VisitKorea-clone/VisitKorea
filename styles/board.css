@@ -1,0 +1,150 @@
+#board_body {
+    background-color: #f5f5f5;
+    margin: auto;
+    width: 70%;
+}
+
+.title-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-dropdown {
+    position: relative;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.selected {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding-bottom: 0px;
+    min-width: 80px;
+}
+
+.dropdown-list {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: -1px;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+    width: 100%;
+    z-index: 999;
+    padding: 0;
+}
+
+.custom-dropdown.open .dropdown-list {
+    display: block;
+}
+
+.dropdown-icon {
+    width: 20px;
+    height: 16px;
+    background-image: url('/assets/images/board/icon_select_region_menu.png');
+    background-size: 20px 32px;
+    background-repeat: no-repeat;
+    background-position: 0 0; /* ▼ 기본 */
+    border: none;
+    outline: none;
+    display: inline-block;
+  }
+  .custom-dropdown.open .dropdown-icon {
+    background-position: 0 -16px; /* ▲ 열렸을 때 */
+  }
+
+.dropdown-list li {
+    list-style: none;
+    padding: 4px 5px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.board_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    margin-top: 3%;
+}
+
+.board_card {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 200px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: white;
+    text-align: center;
+}
+
+.card_img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.image_wrapper {
+    position: relative;
+}
+
+.heart_icon_wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    z-index: 10;
+}
+
+.heart_icon {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.heart_empty {
+    background-image: url('/assets/images/board/bad.png');
+}
+
+.heart_full {
+    background-image: url('/assets/images/board/good.png');
+    z-index: 2;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.card_title {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0 4px;
+    color: #333;
+}
+
+.card_address {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.card_tag {
+    font-size: 12px;
+    color: #888;
+}
