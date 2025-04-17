@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calendar Component</title>
+    <link rel="stylesheet" href="./styles/calendar-slide.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="calendar-section">
+        <div class="line-container">
+          <div class="line">
+            <span class="label" id="monthLabel"></span>
+          </div>
+        </div>
+
+        <div class="calendar-nav">
+          <button class="nav-btn prev"><</button>
+
+          <div class="days-container"></div>
+
+          <button class="nav-btn next">></button>
+          <div class="calendar-btn">
+            <img
+              width="25"
+              height="25"
+              src="https://img.icons8.com/windows/32/calendar.png"
+              alt="calendar"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="slider-section">
+        <div class="slider-container">
+          <div class="slider-wrapper"></div>
+        </div>
+        <!-- Slider Navigation -->
+        <div class="slider-nav">
+          <button class="slider-nav prev"><</button>
+          <div class="slider-dots"></div>
+          <button class="slider-nav next">></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./scripts/calendar.js"></script>
+  </body>
+</html>
