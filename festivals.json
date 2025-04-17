@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "청도 프로방스 빛축제",
+    "location": "경북 청도군",
+    "period": "2025. 1. 11. ~ 2025. 11. 30.",
+    "image": "./assets/images/festival/img1.png",
+    "address": "경상북도 청도군 화양읍 이송미로 272-23",
+    "buttons": {
+      "detail": "https://www.naver.com/",
+      "goNow": "https://www.naver.com/"
+    }
+  },
+  {
+    "id": 2,
+    "title": "4·19혁명 기념축제",
+    "location": "서울 강북구",
+    "period": "2025. 4. 12. ~ 2025. 4. 19.",
+    "image": "./assets/images/festival/img2.png",
+    "address": "서울특별시 강북구 4.19로 8길 17",
+    "buttons": {
+      "detail": "https://www.naver.com/",
+      "goNow": "https://www.naver.com/"
+    }
+  },
+  {
+    "id": 3,
+    "title": "진해 군항제",
+    "location": "경남 창원시",
+    "period": "2025. 3. 25. ~ 2025. 4. 3.",
+    "image": "./assets/images/festival/img3.png",
+    "address": "경상남도 창원시 진해구 진해대첩로 29-33",
+    "buttons": {
+      "detail": "https://www.naver.com/",
+      "goNow": "https://www.naver.com/"
+    }
+  },
+  {
+    "id": 4,
+    "title": "한옥마을 문화축제",
+    "location": "전북 전주시",
+    "period": "2025. 5. 5. ~ 2025. 5. 10.",
+    "image": "./assets/images/festival/img2.png",
+    "address": "전라북도 전주시 완산구 기린대로 99",
+    "buttons": {
+      "detail": "https://www.naver.com/",
+      "goNow": "https://www.naver.com/"
+    }
+  },
+  {
+    "id": 5,
+    "title": "서울 등축제",
+    "location": "서울 종로구",
+    "period": "2025. 5. 1. ~ 2025. 5. 15.",
+    "image": "./assets/images/festival/img1.png",
+    "address": "서울특별시 종로구 세종대로 175",
+    "buttons": {
+      "detail": "https://www.naver.com/",
+      "goNow": "https://www.naver.com/"
+    }
+  }
+]
