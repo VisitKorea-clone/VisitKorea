@@ -1,70 +1,52 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const slider = document.querySelector('.slider');
-  const prevButton = document.querySelector('.prev-button');
-  const nextButton = document.querySelector('.next-button');
-  const regionItems = document.querySelectorAll('.region-item');
+// region-slider.js
+document.addEventListener('includesLoaded', () => {
+  // region-top 내부의 슬라이더 컨테이너만 선택
+  const container = document.querySelector('.region-top .slider-container');
+  if (!container) return;
 
-  let currentPosition = 0;
-  const itemWidth = regionItems[0].offsetWidth + 20;
-  const visibleItems = Math.floor(
-    document.querySelector('.slider-wrapper').offsetWidth / itemWidth
-  );
-  const maxPosition = regionItems.length - visibleItems;
+  const prevBtn = container.querySelector('.prev-button');
+  const nextBtn = container.querySelector('.next-button');
+  const sliderWrapper = container.querySelector('.slider-wrapper');
+  const slider = container.querySelector('.slider');
+  const items = container.querySelectorAll('.region-item');
 
-  updateSliderPosition();
+  // 한 슬라이드의 실제 이동 너비 계산 (margin 포함)
+  const itemStyle = window.getComputedStyle(items[0]);
+  const itemWidth = items[0].offsetWidth;
+  const marginRight = parseFloat(itemStyle.marginRight);
+  const marginLeft = parseFloat(itemStyle.marginLeft);
+  const slideStep = itemWidth + marginLeft + marginRight;
 
-  prevButton.addEventListener('click', function () {
-    if (currentPosition > 0) {
-      currentPosition--;
-      updateSliderPosition();
-    }
-  });
+  // 보이는 개수와 최대 인덱스
+  const visibleCount = Math.floor(sliderWrapper.offsetWidth / slideStep);
+  const maxIndex = Math.max(0, items.length - visibleCount);
+  let currentIndex = 0;
 
-  nextButton.addEventListener('click', function () {
-    if (currentPosition < maxPosition) {
-      currentPosition++;
-      updateSliderPosition();
-    }
-  });
-
-  regionItems.forEach((item) => {
-    item.addEventListener('click', function () {
-      regionItems.forEach((i) => i.classList.remove('active'));
-
-      this.classList.add('active');
-
-      const itemIndex = Array.from(regionItems).indexOf(this);
-      if (itemIndex < currentPosition) {
-        currentPosition = itemIndex;
-        updateSliderPosition();
-      } else if (itemIndex >= currentPosition + visibleItems) {
-        currentPosition = itemIndex - visibleItems + 1;
-        updateSliderPosition();
-      }
-    });
-  });
-
-  function updateSliderPosition() {
-    const translateX = -currentPosition * itemWidth;
-    slider.style.transform = `translateX(${translateX}px)`;
-
-    prevButton.disabled = currentPosition === 0;
-    nextButton.disabled = currentPosition >= maxPosition;
-
-    prevButton.style.opacity = prevButton.disabled ? '0.5' : '1';
-    nextButton.style.opacity = nextButton.disabled ? '0.5' : '1';
+  function updateButtons() {
+    prevBtn.disabled = currentIndex <= 0;
+    nextBtn.disabled = currentIndex >= maxIndex;
   }
 
-  window.addEventListener('resize', function () {
-    const newVisibleItems = Math.floor(
-      document.querySelector('.slider-wrapper').offsetWidth / itemWidth
-    );
-    const newMaxPosition = regionItems.length - newVisibleItems;
+  function slideTo(index) {
+    slider.style.transform = `translateX(-${index * slideStep}px)`;
+  }
 
-    if (currentPosition > newMaxPosition) {
-      currentPosition = Math.max(0, newMaxPosition);
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      slideTo(currentIndex);
+      updateButtons();
     }
-
-    updateSliderPosition();
   });
+
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      slideTo(currentIndex);
+      updateButtons();
+    }
+  });
+
+  // 초기 상태
+  updateButtons();
 });
