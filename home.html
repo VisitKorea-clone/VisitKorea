@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/home.css">
+    <title>슬라이드 페이지</title>
+    <link rel="stylesheet" href="styles/home.css" />
 </head>
 
 <body>
     <div id="main">
         <div class="main_content">
-            <div class="content_wrapper" id="slide_container">
-                <!-- JS로 슬라이드 내용이 채워질 예정 -->
+            <div class="slider_text_wrapper">
+                <div class="slider_text_track" id="textSlider"></div>
+            </div>
+            <div class="slider_image_wrapper">
+                <div class="slider_image_track" id="imageSlider"></div>
             </div>
         </div>
+
         <div class="slide_page" id="slide_page">
             <div id="progressBarContainer">
                 <div id="progressBar"></div>
