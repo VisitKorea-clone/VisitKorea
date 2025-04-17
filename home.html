@@ -1,11 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>슬라이드 페이지</title>
+    <link rel="stylesheet" href="styles/home.css" />
 </head>
+
 <body>
-    
+    <div id="main">
+        <div class="main_content">
+            <div class="slider_text_wrapper">
+                <div class="slider_text_track" id="textSlider"></div>
+            </div>
+            <div class="slider_image_wrapper">
+                <div class="slider_image_track" id="imageSlider"></div>
+            </div>
+        </div>
+
+        <div class="slide_page" id="slide_page">
+            <div id="progressBarContainer">
+                <div id="progressBar"></div>
+            </div>
+            <div class="pageNum" id="pageNumText"></div>
+            <div class="slide_button">
+                <button class="prev">
+                    <div class="arrow arrow-left"></div>
+                </button>
+                <button class="play" id="playButton">
+                    <img src="assets/images/btn_slide_play02.png" class="play-icon" alt="재생">
+                </button>
+                <button class="next">
+                    <div class="arrow arrow-right"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/home.js"></script>
 </body>
+
 </html>
