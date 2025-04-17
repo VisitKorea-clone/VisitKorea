@@ -104,7 +104,7 @@
 
 /* 하단 슬라이드 버튼 및 페이지 표시 */
 .slide_page {
-    background-color: white;
+    background-color: #F7F7F7;
     display: flex;
     align-items: center;
     gap: 20px;
