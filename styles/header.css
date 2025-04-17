@@ -5,16 +5,16 @@ body {
 
 header {
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 120px;
+  height: 100px;
   position: relative;
 }
 
 header .mainLogo {
-  scale: 51%;
+  scale: 40%;
   margin-left: -8rem;
   margin-right: -5rem;
 }
@@ -28,7 +28,7 @@ header .mainLogo {
   text-decoration: none;
   color: #333;
   height: 100%;
-  font-size: 24px;
+  font-size: 18px;
   text-align: left;
   position: relative;
 }
@@ -36,8 +36,8 @@ header .mainLogo {
 .menu a::after {
   content: '';
   position: absolute;
-  top: 3px;
-  right: -11px;
+  top: 0px;
+  right: -12px;
   width: 6.5px;
   height: 6.5px;
   background-color: #000000;
@@ -60,40 +60,46 @@ header .mainLogo {
 }
 
 .circle {
-  border: 2px solid #2d2d2d;
+  border: 2px solid #585858;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 2px;
-  width: 2rem;
-  height: 2.2rem;
+  width: 1.6rem;
+  height: 1.8rem;
 }
-
+.globe {
+  border: none;
+  margin-top: 2px;
+}
 .dropdown {
   display: none;
   width: 100%;
-  height: 270px;
+  height: 220px;
   background-color: #e0e4e8;
   padding: 20px;
   position: absolute;
-  top: 120px;
+  top: 90px;
   left: 0;
   z-index: 10;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
 }
 
 .menu-list {
   display: flex;
   justify-content: center;
-  font-size: 20px;
-  gap: 3rem;
+  font-size: 16px;
+  gap: 2.5rem;
   color: #5c5c5c;
-  padding-left: 17rem;
+  padding-left: 16rem;
 }
 
 header:hover + .dropdown,
 .dropdown:hover {
   display: block;
+  transform: translateY(0);
 }
 
 .travel-course .travel-info .travel-event {
@@ -106,6 +112,14 @@ header:hover + .dropdown,
 .travel-info > div,
 .travel-event > div {
   margin-bottom: 10px;
+}
+
+.travel-info .travel-info-item:hover,
+.travel-course-item:hover,
+.travel-event-item:hover {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .dropdown .menu-list .travel-course {
