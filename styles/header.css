@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  position: relative;
+}
+
+header .mainLogo {
+  scale: 40%;
+  margin-left: -8rem;
+  margin-right: -5rem;
+}
+
+.menu {
+  display: flex;
+  gap: 3rem;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  height: 100%;
+  font-size: 18px;
+  text-align: left;
+  position: relative;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  right: -12px;
+  width: 6.5px;
+  height: 6.5px;
+  background-color: #000000;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.menu a:hover::after,
+.menu a.active::after {
+  opacity: 1;
+}
+
+.menu a:hover {
+  font-weight: 500;
+}
+
+.icon-area {
+  display: flex;
+  gap: 12px;
+}
+
+.circle {
+  border: 2px solid #585858;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+  width: 1.6rem;
+  height: 1.8rem;
+}
+.globe {
+  border: none;
+  margin-top: 2px;
+}
+.dropdown {
+  display: none;
+  width: 100%;
+  height: 220px;
+  background-color: #e0e4e8;
+  padding: 20px;
+  position: absolute;
+  top: 90px;
+  left: 0;
+  z-index: 10;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.menu-list {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  gap: 2.5rem;
+  color: #5c5c5c;
+  padding-left: 16rem;
+}
+
+header:hover + .dropdown,
+.dropdown:hover {
+  display: block;
+  transform: translateY(0);
+}
+
+.travel-course .travel-info .travel-event {
+  display: flex;
+  flex-direction: column;
+  /* gap: 2rem; */
+}
+
+.travel-course > div,
+.travel-info > div,
+.travel-event > div {
+  margin-bottom: 10px;
+}
+
+.travel-info .travel-info-item:hover,
+.travel-course-item:hover,
+.travel-event-item:hover {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dropdown .menu-list .travel-course {
+  margin-left: 60px;
+}
