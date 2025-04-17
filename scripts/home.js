@@ -47,30 +47,57 @@ let currentIndex = 0;
 let progressTimer = null;
 
 const container = document.getElementById("slide_container");
-const slideContainer = document.getElementById("slide_page");
 const mainContent = document.querySelector(".main_content");
-const progressBar = document.getElementById("progressBar"); // 여기 수정!
+const progressBar = document.getElementById("progressBar");
+const mainSlider = document.getElementById("main_slider");
+const mainImg = document.getElementById("main_img");
+const pageNumText = document.getElementById("pageNumText");
 
-function lerpColor(start, end, t) {
-  const s = parseInt(start.substring(1), 16);
-  const e = parseInt(end.substring(1), 16);
-  const sr = (s >> 16) & 0xff, sg = (s >> 8) & 0xff, sb = s & 0xff;
-  const er = (e >> 16) & 0xff, eg = (e >> 8) & 0xff, eb = e & 0xff;
-  const r = Math.round(sr + (er - sr) * t);
-  const g = Math.round(sg + (eg - sg) * t);
-  const b = Math.round(sb + (eb - sb) * t);
-  return `rgb(${r}, ${g}, ${b})`;
+// 모든 슬라이드 렌더
+function renderAllSlides() {
+  const textSlider = document.getElementById("textSlider");
+  const imageSlider = document.getElementById("imageSlider");
+
+  textSlider.innerHTML = '';
+  imageSlider.innerHTML = '';
+
+  slideData.forEach(data => {
+    const textSlide = document.createElement("div");
+    textSlide.className = "slide_text";
+    textSlide.innerHTML = `
+      <div class="slide_title">${data.title}</div>
+      <div class="slide_content">${data.content}</div>
+      <div class="slide_description">
+        <a href="#" class="detail">${data.detail}</a>
+      </div>
+    `;
+    textSlider.appendChild(textSlide);
+
+    const imgSlide = document.createElement("div");
+    imgSlide.className = "slide_image";
+    imgSlide.innerHTML = `<img src="${data.image}" alt="슬라이드 이미지">`;
+    imageSlider.appendChild(imgSlide);
+  });
 }
 
+function moveToSlide(index) {
+  document.getElementById("textSlider").style.transform = `translateX(-${index * 100}%)`;
+  document.getElementById("imageSlider").style.transform = `translateX(-${index * 100}%)`;
+  mainContent.style.backgroundColor = slideData[index].bgColor;
+  pageNumText.textContent = `${String(index + 1).padStart(2, "0")}/${String(slideData.length).padStart(2, "0")}`;
+
+  startProgressTimer();
+}
+
+// 프로그레스 바
 function startProgressTimer() {
-  const totalTime = 6000;
+  const totalTime = 5000;
   const interval = 100;
   const steps = totalTime / interval;
   let currentStep = 0;
 
-  // 초기화
   progressBar.style.width = "0%";
-  progressBar.style.backgroundColor = "#B2B2B2";
+  progressBar.style.backgroundColor = "#000000";
 
   if (progressTimer) clearInterval(progressTimer);
 
@@ -78,60 +105,32 @@ function startProgressTimer() {
     currentStep++;
     const progress = currentStep / steps;
     progressBar.style.width = `${progress * 100}%`;
-    progressBar.style.backgroundColor = lerpColor("#B2B2B2", "#000000", progress);
 
     if (currentStep >= steps) {
       clearInterval(progressTimer);
       currentIndex = (currentIndex + 1) % slideData.length;
-      renderSlide(currentIndex);
+      moveToSlide(currentIndex);
     }
   }, interval);
 }
 
-function renderSlide(index) {
-  const data = slideData[index];
-  mainContent.style.backgroundColor = data.bgColor;
-
-  container.innerHTML = `
-    <ul class="slide_content">
-      <li class="title">${data.title}</li>
-      <li class="content">${data.content}</li>
-      <li class="description">
-        <a href="#" class="detail" target="_self">${data.detail}</a>
-      </li>
-    </ul>
-    <div class="slide_img">
-      <img src="${data.image}" class="img" />
-    </div>
-  `;
-
-  const pageNumText = document.getElementById("pageNumText");
-  pageNumText.textContent = `${String(index + 1)}/${String(slideData.length)}`;
-
-  startProgressTimer();
-}
-
+// 초기 설정
 document.addEventListener("DOMContentLoaded", () => {
-  renderSlide(currentIndex);
+  renderAllSlides();             // 슬라이드 전체 렌더
+  moveToSlide(currentIndex);     // 초기 슬라이드 위치
 
   document.querySelector(".prev").addEventListener("click", () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      renderSlide(currentIndex);
-    }
+    currentIndex = (currentIndex - 1 + slideData.length) % slideData.length;
+    moveToSlide(currentIndex);
   });
 
   document.querySelector(".next").addEventListener("click", () => {
-    if (currentIndex < slideData.length - 1) {
-      currentIndex++;
-      renderSlide(currentIndex);
-    } else if (currentIndex == slideData.length -1) {
-      currentIndex = 0;
-      renderSlide(currentIndex);
-    }
+    currentIndex = (currentIndex + 1) % slideData.length;
+    moveToSlide(currentIndex);
   });
 });
 
+// 재생/정지 버튼
 const playButton = document.getElementById("playButton");
 let isPlaying = true;
 
@@ -139,17 +138,14 @@ playButton.addEventListener("click", () => {
   const playIcon = playButton.querySelector("img");
 
   if (isPlaying) {
-    playIcon.src = "assets/images/btn_slidem_m_stop02.png";
+    playIcon.src = "assets/images/btn_slide_play02.png";
     playIcon.alt = "정지";
     clearInterval(progressTimer);
   } else {
-    playIcon.src = "assets/images/btn_slide_play02.png";
+    playIcon.src = "assets/images/btn_slidem_m_stop02.png";
     playIcon.alt = "재생";
     startProgressTimer();
   }
 
   isPlaying = !isPlaying;
 });
-
-// 처음 시작
-renderSlide(currentIndex);
