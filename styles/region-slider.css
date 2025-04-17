@@ -1,9 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* 
 body {
   font-family: 'Noto Sans KR', sans-serif;
   display: flex;
@@ -12,9 +7,9 @@ body {
   min-height: 100vh;
   background: #fafafa;
   color: #333;
-}
+} */
 
-.slider-container {
+.region-top .slider-container {
   width: 100%;
   height: 190px;
   background-color: #cedcff;
@@ -25,7 +20,7 @@ body {
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.slider-wrapper {
+.region-top .slider-wrapper {
   width: calc(70% - 100px);
   max-width: 920px;
   padding: 0 10px;
@@ -33,13 +28,13 @@ body {
   position: relative;
 }
 
-.slider {
+.region-top .slider {
   display: flex;
-  height: 120px;
+  height: 140px;
   transition: transform 0.5s ease;
 }
 
-.region-item {
+.region-top .region-item {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -48,7 +43,7 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.region-item.dummy {
+.region-top .region-item.dummy {
   visibility: hidden;
   width: 80px;
   height: 80px;
@@ -56,7 +51,7 @@ body {
   pointer-events: none;
 }
 
-.circle {
+.region-top .circle {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -66,19 +61,19 @@ body {
   position: relative;
 }
 
-.region-item.active .circle {
+.region-top .region-item.active .circle {
   width: 90px;
   height: 90px;
   border-color: #343434;
 }
 
-.circle img {
+.region-top .circle img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.region-name {
+.region-top .region-name {
   margin-top: 10px;
   font-size: 14px;
   font-weight: bold;
@@ -86,7 +81,7 @@ body {
   text-align: center;
 }
 
-.nav-button {
+.region-top .nav-button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -100,42 +95,42 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.nav-button:hover {
+.region-top .nav-button:hover {
   background-color: #f8f8f8;
   color: #333;
 }
 
-.nav-button:focus {
+.region-top .nav-button:focus {
   outline: none;
 }
 
-.prev-button {
+.region-top .prev-button {
   margin-right: 10px;
 }
 
-.next-button {
+.region-top .next-button {
   margin-left: 10px;
 }
 
 /* 컨테이너 */
-.area-story {
-  max-width: 1200px;
-  margin: 40px auto;
+.region-bottom .area-story {
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 0 20px;
 }
-.area-story h1 {
+.region-bottom .area-story h1 {
   text-align: left;
   font-size: 1.5rem;
   margin-bottom: 35px;
 }
 
-.cards {
+.region-bottom .cards {
   display: flex;
-  width: 1000px;
+  width: 1100px;
   gap: 20px;
 }
 
-.card {
+.region-bottom .card {
   flex: 1;
   padding: 28px;
   border-radius: 4px;
@@ -145,48 +140,48 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card--featured {
+.region-bottom .card--featured {
   background: #f9d8c6;
   flex: 1;
 }
-.card--lavender {
+.region-bottom .card--lavender {
   background: #d7b7f4;
   flex: 1;
 }
-.card--sky {
+.region-bottom .card--sky {
   background: #b5d7ff;
   flex: 1;
 }
 
-.card:hover {
+.region-bottom .card:hover {
   border-top-right-radius: 80px;
 }
 
-.card-labels {
+.region-bottom .card-labels {
   display: flex;
   gap: 8px;
   margin-bottom: 16px;
 }
-.badge {
+.region-bottom .badge {
   font-size: 0.875rem;
   padding: 4px 8px;
   border: 1px solid #444;
   border-radius: 4px;
   color: #444;
 }
-.badge--filled {
+.region-bottom .badge--filled {
   background: #444;
   color: #fff;
   border-color: transparent;
 }
 
-.card-title {
+.region-bottom .card-title {
   font-size: 1.25rem;
   height: 50px;
   margin-bottom: 16px;
 }
 
-.card-link {
+.region-bottom .card-link {
   display: inline-block;
   margin-bottom: 24px;
   font-size: 1rem;
@@ -195,20 +190,20 @@ body {
   cursor: pointer;
 }
 
-.card-content {
+.region-bottom .card-content {
   background: #fff;
-  padding: 16px;
+  padding: 1px 0;
   height: 85px;
   border-radius: 8px;
 }
-.card-content blockquote {
+.region-bottom .card-content blockquote {
   position: relative;
   font-style: normal;
   color: #666;
-  padding-top: 12px;
+  padding-top: 2px;
   text-align: center;
 }
-.card-content blockquote::before {
+.region-bottom .card-content blockquote::before {
   content: '“';
   font-size: 2rem;
   position: absolute;

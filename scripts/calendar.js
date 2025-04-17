@@ -4,19 +4,17 @@ document.addEventListener('includesLoaded', () => {
 });
 
 function initCalendar() {
-  const daysContainer = document.querySelector('.days-container');
-  const label = document.querySelector('#monthLabel');
-  const prevBtn = document.querySelector('.nav-btn.prev');
-  const nextBtn = document.querySelector('.nav-btn.next');
+  const root = document.querySelector('.region-mid');
+  const daysContainer = root.querySelector('.days-container');
+  const label = root.querySelector('#monthLabel');
+  const prevBtn = root.querySelector('.nav-btn.prev');
+  const nextBtn = root.querySelector('.nav-btn.next');
 
   const displayedDaysCount = 14;
-
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-
   const allowedMin = new Date(today.getFullYear(), today.getMonth() - 3, 1);
-  const allowedMax = new Date(today.getFullYear(), today.getMonth() + 3 + 1, 0);
-
+  const allowedMax = new Date(today.getFullYear(), today.getMonth() + 4, 0);
   let currentViewStart = new Date(today);
 
   function getDayAbbreviation(date) {
@@ -29,11 +27,8 @@ function initCalendar() {
     dayItem.classList.add('day-item');
     dayItem.dataset.date = date.toISOString();
 
-    if (date.getDay() === 6) {
-      dayItem.classList.add('saturday');
-    } else if (date.getDay() === 0) {
-      dayItem.classList.add('sunday');
-    }
+    if (date.getDay() === 6) dayItem.classList.add('saturday');
+    else if (date.getDay() === 0) dayItem.classList.add('sunday');
 
     const dayNumber = document.createElement('div');
     dayNumber.classList.add('day-number');
@@ -41,19 +36,16 @@ function initCalendar() {
 
     const dayName = document.createElement('div');
     dayName.classList.add('day-name');
-    if (date.getTime() === today.getTime()) {
-      dayName.textContent = '오늘';
-    } else {
-      dayName.textContent = getDayAbbreviation(date);
-    }
+    dayName.textContent =
+      date.getTime() === today.getTime() ? '오늘' : getDayAbbreviation(date);
 
-    dayItem.appendChild(dayNumber);
-    dayItem.appendChild(dayName);
+    dayItem.append(dayNumber, dayName);
 
-    dayItem.addEventListener('click', function () {
-      document.querySelectorAll('.day-item.current').forEach(function (item) {
-        item.classList.remove('current');
-      });
+    dayItem.addEventListener('click', () => {
+      // scope to root only
+      root
+        .querySelectorAll('.day-item.current')
+        .forEach((i) => i.classList.remove('current'));
       dayItem.classList.add('current');
 
       const selectedDate = new Date(dayItem.dataset.date);
@@ -67,27 +59,24 @@ function initCalendar() {
 
   function renderCalendar() {
     daysContainer.innerHTML = '';
-
     const month = currentViewStart.getMonth() + 1;
     const year = currentViewStart.getFullYear();
     label.textContent = `${year}.${month}`;
 
     for (let i = 0; i < displayedDaysCount; i++) {
-      let currentDate = new Date(currentViewStart);
+      const currentDate = new Date(currentViewStart);
       currentDate.setDate(currentViewStart.getDate() + i);
-
       if (currentDate > allowedMax) break;
-      const dayItem = createDayItem(currentDate);
-      daysContainer.appendChild(dayItem);
+      daysContainer.appendChild(createDayItem(currentDate));
     }
 
+    // mark first as current
     const firstDay = daysContainer.firstElementChild;
     if (firstDay) {
-      document.querySelectorAll('.day-item.current').forEach(function (item) {
-        item.classList.remove('current');
-      });
+      root
+        .querySelectorAll('.day-item.current')
+        .forEach((i) => i.classList.remove('current'));
       firstDay.classList.add('current');
-
       const selectedDate = new Date(firstDay.dataset.date);
       if (typeof filterSliderByDate === 'function') {
         filterSliderByDate(selectedDate);
@@ -98,41 +87,33 @@ function initCalendar() {
   function updateView(deltaDays) {
     let newStart = new Date(currentViewStart);
     newStart.setDate(newStart.getDate() + deltaDays);
-
-    if (newStart < allowedMin) {
-      newStart = new Date(allowedMin);
-    }
+    if (newStart < allowedMin) newStart = new Date(allowedMin);
 
     const potentialEnd = new Date(newStart);
     potentialEnd.setDate(newStart.getDate() + displayedDaysCount - 1);
     if (potentialEnd > allowedMax) {
-      const diffMs = potentialEnd.getTime() - allowedMax.getTime();
-      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      const diffDays = Math.ceil(
+        (potentialEnd - allowedMax) / (1000 * 60 * 60 * 24)
+      );
       newStart.setDate(newStart.getDate() - diffDays);
     }
-    if (newStart < allowedMin) {
-      newStart = new Date(allowedMin);
-    }
-
+    if (newStart < allowedMin) newStart = new Date(allowedMin);
     currentViewStart = newStart;
     renderCalendar();
   }
 
-  prevBtn.addEventListener('click', function () {
-    updateView(-14);
-  });
-  nextBtn.addEventListener('click', function () {
-    updateView(14);
-  });
+  prevBtn.addEventListener('click', () => updateView(-14));
+  nextBtn.addEventListener('click', () => updateView(14));
 
   renderCalendar();
 }
 
 function initSlider() {
-  const sliderWrapper = document.querySelector('.slider-wrapper');
-  const sliderDotsContainer = document.querySelector('.slider-dots');
-  const prevBtn = document.querySelector('button.slider-nav.prev');
-  const nextBtn = document.querySelector('button.slider-nav.next');
+  const root = document.querySelector('.region-mid');
+  const sliderWrapper = root.querySelector('.slider-wrapper');
+  const sliderDotsContainer = root.querySelector('.slider-dots');
+  const prevBtn = root.querySelector('.slider-nav.prev');
+  const nextBtn = root.querySelector('.slider-nav.next');
 
   let festivals = [];
   window.currentSlide = 0;
@@ -158,6 +139,7 @@ function initSlider() {
       const contentDiv = document.createElement('div');
       contentDiv.classList.add('slide-content');
 
+      // image
       const imageDiv = document.createElement('div');
       imageDiv.classList.add('slide-image');
       const img = document.createElement('img');
@@ -165,19 +147,20 @@ function initSlider() {
       img.alt = fest.title;
       imageDiv.appendChild(img);
 
+      // info
       const infoDiv = document.createElement('div');
       infoDiv.classList.add('slide-info');
       const titleH2 = document.createElement('h2');
       titleH2.classList.add('event-title');
       titleH2.textContent = fest.title;
-
       const locationP = document.createElement('p');
       locationP.classList.add('event-location');
       locationP.textContent = fest.location;
 
       const detailsDiv = document.createElement('div');
       detailsDiv.classList.add('event-details');
-
+      // period
+      const [startDate, endDate] = fest.period.split('~').map((s) => s.trim());
       const periodDiv = document.createElement('div');
       periodDiv.classList.add('detail-col');
       const periodLabel = document.createElement('div');
@@ -185,13 +168,9 @@ function initSlider() {
       periodLabel.textContent = '기간';
       const periodValue = document.createElement('div');
       periodValue.classList.add('detail-value');
-      const [startDate, endDate] = fest.period
-        .split('~')
-        .map((date) => date.trim());
       periodValue.innerHTML = `${startDate} ~<br>${endDate}`;
-      periodDiv.appendChild(periodLabel);
-      periodDiv.appendChild(periodValue);
-
+      periodDiv.append(periodLabel, periodValue);
+      // address
       const addressDiv = document.createElement('div');
       addressDiv.classList.add('detail-col');
       const addressLabel = document.createElement('div');
@@ -200,11 +179,9 @@ function initSlider() {
       const addressValue = document.createElement('div');
       addressValue.classList.add('detail-value');
       addressValue.textContent = fest.address;
-      addressDiv.appendChild(addressLabel);
-      addressDiv.appendChild(addressValue);
+      addressDiv.append(addressLabel, addressValue);
 
-      detailsDiv.appendChild(periodDiv);
-      detailsDiv.appendChild(addressDiv);
+      detailsDiv.append(periodDiv, addressDiv);
 
       const buttonsDiv = document.createElement('div');
       buttonsDiv.classList.add('event-buttons');
@@ -212,24 +189,15 @@ function initSlider() {
       btnDetail.classList.add('btn', 'btn-dark');
       btnDetail.textContent = '바로가기';
       btnDetail.onclick = () => window.open(fest.buttons.detail, '_blank');
-
       const btnGoNow = document.createElement('button');
       btnGoNow.classList.add('btn', 'btn-light');
       btnGoNow.textContent = '길찾기';
       btnGoNow.onclick = () => window.open(fest.buttons.goNow, '_blank');
+      buttonsDiv.append(btnDetail, btnGoNow);
 
-      buttonsDiv.appendChild(btnDetail);
-      buttonsDiv.appendChild(btnGoNow);
-
-      infoDiv.appendChild(titleH2);
-      infoDiv.appendChild(locationP);
-      infoDiv.appendChild(detailsDiv);
-      infoDiv.appendChild(buttonsDiv);
-
-      contentDiv.appendChild(imageDiv);
-      contentDiv.appendChild(infoDiv);
+      infoDiv.append(titleH2, locationP, detailsDiv, buttonsDiv);
+      contentDiv.append(imageDiv, infoDiv);
       slideDiv.appendChild(contentDiv);
-
       sliderWrapper.appendChild(slideDiv);
 
       const dot = document.createElement('span');
@@ -249,94 +217,77 @@ function initSlider() {
 
     const slideWidth = slides[0].offsetWidth;
     const moveX = window.currentSlide * slideWidth;
-
     sliderWrapper.style.transform = `translateX(-${moveX}px)`;
 
-    slides.forEach((slide, index) => {
-      slide.classList.toggle('active', index === window.currentSlide);
-    });
+    slides.forEach((s, i) =>
+      s.classList.toggle('active', i === window.currentSlide)
+    );
 
-    const dots = document.querySelectorAll('.dot');
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === window.currentSlide);
-    });
+    root
+      .querySelectorAll('.dot')
+      .forEach((d, i) =>
+        d.classList.toggle('active', i === window.currentSlide)
+      );
 
-    if (window.currentSlide === slides.length - 1) {
-      nextBtn.style.display = 'none';
-    } else {
-      nextBtn.style.display = 'flex';
+    nextBtn.style.display =
+      window.currentSlide === slides.length - 1 ? 'none' : 'flex';
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    if (window.currentSlide > 0) {
+      window.currentSlide--;
+      updateSlider();
     }
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      const slides = sliderWrapper.querySelectorAll('.slide');
-      if (window.currentSlide > 0) {
-        window.currentSlide--;
-        updateSlider();
-      }
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      const slides = sliderWrapper.querySelectorAll('.slide');
-      if (window.currentSlide < slides.length - 1) {
-        window.currentSlide++;
-        updateSlider();
-      }
-    });
-  }
-
-  window.addEventListener('resize', () => {
-    updateSlider();
   });
 
+  nextBtn?.addEventListener('click', () => {
+    if (
+      window.currentSlide <
+      sliderWrapper.querySelectorAll('.slide').length - 1
+    ) {
+      window.currentSlide++;
+      updateSlider();
+    }
+  });
+
+  window.addEventListener('resize', updateSlider);
+
   fetch('./festivals.json')
-    .then((response) => response.json())
+    .then((res) => res.json())
     .then((data) => {
       festivals = data;
-
-      window.festivalData = festivals;
+      window.festivalData = data;
       window.createSlides = createSlides;
       window.updateSlider = updateSlider;
-
-      createSlides(festivals);
+      createSlides(data);
       updateSlider();
     })
-    .catch((error) => console.error('Error loading festivals.json:', error));
+    .catch((err) => console.error('Error loading festivals.json:', err));
 }
 
 function filterSliderByDate(selectedDate) {
+  const root = document.querySelector('.region-mid');
   const allFestivals = window.festivalData || [];
-  const filtered = allFestivals.filter((festival) => {
-    // 축제 period는 "YYYY. M. D. ~ YYYY. M. D." 형식임 (예: "2025. 4. 11. ~ 2025. 4. 30.")
+  const filtered = allFestivals.filter((fest) => {
     const regex =
       /(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})\.\s*~\s*(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})\./;
-    const match = festival.period.match(regex);
-    if (match) {
-      const startYear = parseInt(match[1]);
-      const startMonth = parseInt(match[2]) - 1;
-      const startDay = parseInt(match[3]);
-      const endYear = parseInt(match[4]);
-      const endMonth = parseInt(match[5]) - 1;
-      const endDay = parseInt(match[6]);
-      const startDate = new Date(startYear, startMonth, startDay);
-      const endDate = new Date(endYear, endMonth, endDay);
-      return selectedDate >= startDate && selectedDate <= endDate;
-    }
-    return false;
+    const m = fest.period.match(regex);
+    if (!m) return false;
+    const [, y1, mo1, d1, y2, mo2, d2] = m.map(Number);
+    const start = new Date(y1, mo1 - 1, d1);
+    const end = new Date(y2, mo2 - 1, d2);
+    return selectedDate >= start && selectedDate <= end;
   });
 
   window.currentSlide = 0;
-  if (filtered.length > 0) {
+  if (filtered.length) {
     window.createSlides(filtered);
     window.updateSlider();
   } else {
-    const sliderWrapper = document.querySelector('.slider-wrapper');
-    const sliderDotsContainer = document.querySelector('.slider-dots');
+    const sliderWrapper = root.querySelector('.slider-wrapper');
+    const sliderDots = root.querySelector('.slider-dots');
     sliderWrapper.innerHTML =
       '<div class="no-result">선택한 날짜에 해당하는 축제가 없습니다.</div>';
-    sliderDotsContainer.innerHTML = '';
+    sliderDots.innerHTML = '';
   }
 }
