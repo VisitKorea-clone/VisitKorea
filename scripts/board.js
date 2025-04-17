@@ -229,11 +229,10 @@ function renderCardsByType(type) {
 
         card.innerHTML = `
             <div class="image_wrapper">
-                <img src="${data.image}" alt="${data.title}" class="card_img">
-                <div class="heart_icon_wrapper">
-                    <div class="heart_icon heart_empty"></div>
-                    <div class="heart_icon heart_full hidden"></div>
-                </div>
+                <a href="#" class="a_image">
+                    <img src="${data.image}" alt="${data.title}" class="card_img">
+                </a>
+                <div class="heart_icon" data-liked="false"></div>
             </div>
             <div class="card_title">${data.title}</div>
             <div class="card_address">${data.address}</div>
@@ -247,26 +246,12 @@ function renderCardsByType(type) {
 }
 
 function attachHeartEvent() {
-    document.querySelectorAll('.heart_icon_wrapper').forEach((wrapper, idx) => {
-        const empty = wrapper.querySelector('.heart_empty');
-        const full = wrapper.querySelector('.heart_full');
-
-        wrapper.addEventListener('click', () => {
-            const isLiked = !full.classList.contains('hidden');
-
-            if (isLiked) {
-                full.classList.add('hidden');
-                full.style.display = 'none'; // ❗️강제 숨김
-                empty.classList.remove('hidden');
-                empty.style.display = 'block'; // ❗️강제 표시
-                alert("좋아요 취소");
-            } else {
-                full.classList.remove('hidden');
-                full.style.display = 'block'; // ❗️강제 표시
-                empty.classList.add('hidden');
-                empty.style.display = 'none'; // ❗️강제 숨김
-                alert("좋아요 누름");
-            }
+    document.querySelectorAll('.heart_icon').forEach((icon, idx) => {
+        icon.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isLiked = icon.classList.toggle('liked');
+            icon.setAttribute('data-liked', isLiked);
+            alert(isLiked ? "좋아요 누름" : "좋아요 취소");
         });
     });
 }
