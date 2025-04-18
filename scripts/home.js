@@ -4,42 +4,42 @@ document.addEventListener('includesLoaded', () => {
       title: "한국관광공사X카카오모빌리티",
       content: "댕댕이도 함께 가요🐾<br>댕댕 여행 지도",
       detail: "자세히 보기",
-      image: "assets/images/home_slide1.png",
+      image: "assets/images/home/home_slide1.png",
       bgColor: "#FFFFDE",
     },
     {
       title: "방문자 수로 본 인기 급상승 도시",
       content: "데이터로 본 지역별<br>핫플레이스!<br>뜨는 도시 7",
       detail: "자세히 보기",
-      image: "assets/images/home_slide3.png",
+      image: "assets/images/home/home_slide3.png",
       bgColor: "#FEF1F7",
     },
     {
       title: "사진 속 친환경 여행지를 맞혀보자!",
       content: "4월은 지구의 달🌎<br>에코 감수성 테스트",
       detail: "자세히 보기",
-      image: "assets/images/home_slide2.png",
+      image: "assets/images/home/home_slide2.png",
       bgColor: "#D9EFFF",
     },
     {
       title: "봄으로 물드는 지금,",
       content: "남원에서 만끽하는<br>아날로그 여행",
       detail: "자세히 보기",
-      image: "assets/images/home_slide4.png",
+      image: "assets/images/home/home_slide4.png",
       bgColor: "#DEDEFF",
     },
     {
       title: "봄 청취로 가득!",
       content: "마음까지 화사해지는<br>매화 명소 추천 3",
       detail: "자세히 보기",
-      image: "assets/images/home_slide5.png",
+      image: "assets/images/home/home_slide5.png",
       bgColor: "#FFFFF5",
     },
     {
       title: "전국 벚꽃 개화 시기 총정리",
       content: "봄을 만끽해 봄🌸<br>2025 벚꽃 개화 지도",
       detail: "자세히 보기",
-      image: "assets/images/home_slide6.png",
+      image: "assets/images/home/home_slide6.png",
       bgColor: "#FEF2F5",
     },
   ];
@@ -130,11 +130,11 @@ document.addEventListener('includesLoaded', () => {
     const playIcon = playButton.querySelector("img");
     if (isPlaying) {
       clearInterval(progressTimer);
-      playIcon.src = "assets/images/btn_slide_play02.png";
+      playIcon.src = "assets/images/home/btn_slide_play02.png";
       playIcon.alt = "정지";
     } else {
       startProgressTimer();
-      playIcon.src = "assets/images/btn_slidem_m_stop02.png";
+      playIcon.src = "assets/images/home/btn_slidem_m_stop02.png";
       playIcon.alt = "재생";
     }
     isPlaying = !isPlaying;
