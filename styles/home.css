@@ -206,11 +206,11 @@ button {
 }
 
 .arrow {
-  width: 17px;
-  height: 16px;
-  background-image: url('/assets/images/home/btn_showcase_arw.png');
-  background-repeat: no-repeat;
-  background-size: 100% auto;
+    width: 17px;
+    height: 16px;
+    background-image: url("/assets/images/home/btn_showcase_arw.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
 }
 
 .arrow-left {
