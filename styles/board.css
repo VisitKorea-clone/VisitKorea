@@ -31,12 +31,12 @@
     font-size: 25px;
 }
 
-.dropdown-list {
+.board-dropdown-list {
     position: absolute;
     left: 0;
     top: 100%;
     margin-top: -1px;
-    background-color: white;
+    background-color: #F7F7F7;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: none;
@@ -45,7 +45,7 @@
     padding: 0;
 }
 
-.custom-dropdown.open .dropdown-list {
+.custom-dropdown.open .board-dropdown-list {
     display: block;
 }
 
@@ -67,7 +67,7 @@
     /* ▲ 열렸을 때 */
 }
 
-.dropdown-list li {
+.board-dropdown-list li {
     list-style: none;
     padding: 4px 5px;
     font-weight: bold;
