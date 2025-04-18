@@ -30,7 +30,6 @@ document.addEventListener('includesLoaded', function () {
     if (currentPosition < maxPosition) {
       currentPosition++;
       updateSliderPosition();
-      console.log(currentPosition, maxPosition);
     }
   });
 
