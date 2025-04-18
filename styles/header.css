@@ -4,6 +4,8 @@ body {
 }
 
 header {
+  background-color: white;
+
   margin: 0 auto;
   padding: 0 1rem;
   display: flex;
