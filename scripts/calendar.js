@@ -118,6 +118,21 @@ function initSlider() {
   let festivals = [];
   window.currentSlide = 0;
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  fetch('./festivals.json')
+    .then((res) => res.json())
+    .then((data) => {
+      festivals = data;
+      window.festivalData = data;
+      window.createSlides = createSlides;
+      window.updateSlider = updateSlider;
+
+      filterSliderByDate(today);
+    })
+    .catch((err) => console.error('Error loading festivals.json:', err));
+
   function createSlides(data) {
     sliderWrapper.innerHTML = '';
     sliderDotsContainer.innerHTML = '';
@@ -251,18 +266,6 @@ function initSlider() {
   });
 
   window.addEventListener('resize', updateSlider);
-
-  fetch('./festivals.json')
-    .then((res) => res.json())
-    .then((data) => {
-      festivals = data;
-      window.festivalData = data;
-      window.createSlides = createSlides;
-      window.updateSlider = updateSlider;
-      createSlides(data);
-      updateSlider();
-    })
-    .catch((err) => console.error('Error loading festivals.json:', err));
 }
 
 function filterSliderByDate(selectedDate) {
