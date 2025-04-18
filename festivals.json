@@ -7,8 +7,8 @@
     "image": "./assets/images/festival/img1.png",
     "address": "경상북도 청도군 화양읍 이송미로 272-23",
     "buttons": {
-      "detail": "https://www.naver.com/",
-      "goNow": "https://www.naver.com/"
+      "detail": "https://www.cheongdo-provence.co.kr/",
+      "goNow": "https://www.google.com/maps/search/?api=1&query=경상북도+청도군+화양읍+이송미로+272-23"
     }
   },
   {
@@ -19,32 +19,32 @@
     "image": "./assets/images/festival/img2.png",
     "address": "서울특별시 강북구 4.19로 8길 17",
     "buttons": {
-      "detail": "https://www.naver.com/",
-      "goNow": "https://www.naver.com/"
+      "detail": "https://festival419.org/",
+      "goNow": "https://www.google.com/maps/search/?api=1&query=서울+강북구+4.19로+8길+17"
     }
   },
   {
     "id": 3,
     "title": "진해 군항제",
     "location": "경남 창원시",
-    "period": "2025. 3. 25. ~ 2025. 4. 3.",
+    "period": "2025. 3. 29. ~ 2025. 4. 6.",
     "image": "./assets/images/festival/img3.png",
     "address": "경상남도 창원시 진해구 진해대첩로 29-33",
     "buttons": {
-      "detail": "https://www.naver.com/",
-      "goNow": "https://www.naver.com/"
+      "detail": "https://jgfestival.or.kr/",
+      "goNow": "https://www.google.com/maps/search/?api=1&query=경상남도+창원시+진해구+진해대첩로+29-33"
     }
   },
   {
     "id": 4,
     "title": "한옥마을 문화축제",
     "location": "전북 전주시",
-    "period": "2025. 5. 5. ~ 2025. 5. 10.",
+    "period": "2025. 4. 5. ~ 2025. 4. 21.",
     "image": "./assets/images/festival/img2.png",
     "address": "전라북도 전주시 완산구 기린대로 99",
     "buttons": {
-      "detail": "https://www.naver.com/",
-      "goNow": "https://www.naver.com/"
+      "detail": "https://tour.jeonju.go.kr/index.jeonju?menuCd=DOM_000000102001000000",
+      "goNow": "https://www.google.com/maps/search/?api=1&query=전라북도+전주시+완산구+기린대로+99"
     }
   },
   {
@@ -52,11 +52,47 @@
     "title": "서울 등축제",
     "location": "서울 종로구",
     "period": "2025. 5. 1. ~ 2025. 5. 15.",
-    "image": "./assets/images/festival/img1.png",
+    "image": "./assets/images/festival/img3.png",
     "address": "서울특별시 종로구 세종대로 175",
     "buttons": {
-      "detail": "https://www.naver.com/",
-      "goNow": "https://www.naver.com/"
+      "detail": "https://search.naver.com/search.naver?query=서울+등축제",
+      "goNow": "https://www.google.com/maps/search/?api=1&query=서울특별시+종로구+세종대로+175"
+    }
+  },
+  {
+    "id": 6,
+    "title": "제주 벚꽃 축제",
+    "location": "제주도 제주시",
+    "period": "2025. 3. 20. ~ 2025. 3. 30.",
+    "image": "./assets/images/festival/img1.png",
+    "address": "제주특별자치도 제주시 연동로 1",
+    "buttons": {
+      "detail": "http://www.hallimpark.com",
+      "goNow": "https://www.google.com/maps/search/?api=1&query=제주특별자치도+제주시+연동로+1"
+    }
+  },
+  {
+    "id": 7,
+    "title": "부산 불꽃 축제",
+    "location": "부산 해운대구",
+    "period": "2025. 4. 1. ~ 2025. 4. 15.",
+    "image": "./assets/images/festival/img2.png",
+    "address": "부산광역시 해운대구 해운대해변로 299",
+    "buttons": {
+      "detail": "https://www.bfo.or.kr/festival/main/index.asp",
+      "goNow": "https://www.google.com/maps/search/?api=1&query=부산광역시+해운대구+해운대해변로+299"
+    }
+  },
+  {
+    "id": 8,
+    "title": "춘천 마임 축제",
+    "location": "강원 춘천시",
+    "period": "2025. 2. 10. ~ 2025. 6. 1.",
+    "image": "./assets/images/festival/img3.png",
+    "address": "강원도 춘천시 근화로 10",
+    "buttons": {
+      "detail": "https://www.mimefestival.com/",
+      "goNow": "https://www.google.com/maps/search/?api=1&query=강원도+춘천시+근화로+10"
     }
   }
 ]
