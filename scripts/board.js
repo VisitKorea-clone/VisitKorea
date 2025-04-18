@@ -174,7 +174,7 @@ document.addEventListener('includesLoaded', () => {
     ];
 
     const dropdown = document.querySelector(".custom-dropdown");
-    const selected = dropdown.querySelector(".selected");
+    const selected = dropdown.querySelector(".board-selected"); // ⭐ board-selected 클래스 확인
     const list = dropdown.querySelector(".board-dropdown-list");
     const selectedText = dropdown.querySelector(".selected-text");
 
@@ -183,34 +183,35 @@ document.addEventListener('includesLoaded', () => {
 
     function updateDropdown() {
         selectedText.textContent = currentValue;
-
         list.innerHTML = "";
-        options.filter(opt => opt !== currentValue).forEach(opt => {
-            const li = document.createElement("li");
-            li.textContent = opt;
-            li.setAttribute("data-value", opt);
-            list.appendChild(li);
 
-            li.addEventListener("click", () => {
-                currentValue = opt;
-                dropdown.classList.remove("open");
-                updateDropdown();
-                renderCardsByType(currentValue);
+        options
+            .filter(opt => opt !== currentValue)
+            .forEach(opt => {
+                const li = document.createElement("li");
+                li.textContent = opt;
+                li.setAttribute("data-value", opt);
+                list.appendChild(li);
+
+                li.addEventListener("click", () => {
+                    currentValue = opt;
+                    dropdown.classList.remove("open");
+                    updateDropdown();
+                    renderCardsByType(currentValue);
+                });
             });
-        });
 
         renderCardsByType(currentValue);
     }
 
-    selected.addEventListener("click", () => {
+    selected.addEventListener("click", (e) => {
+        e.stopPropagation();
         dropdown.classList.toggle("open");
-        updateDropdown();
     });
 
     document.addEventListener("click", (e) => {
         if (!dropdown.contains(e.target)) {
             dropdown.classList.remove("open");
-            updateDropdown();
         }
     });
 
@@ -250,9 +251,8 @@ document.addEventListener('includesLoaded', () => {
                 e.preventDefault();
                 const isLiked = icon.classList.toggle('liked');
                 icon.setAttribute('data-liked', isLiked);
-
-                // 이미지 위치 변경 (css background-position으로 toggle)
                 icon.style.backgroundPosition = isLiked ? "0 -16px" : "0 0";
+                alert(isLiked ? "좋아요를 누르셨습니다." : "좋아요가 취소되었습니다.");
             });
         });
     }
